@@ -397,7 +397,7 @@ function onCityChanged() {
     // Get current value of select element
     let city = select.options[select.selectedIndex].value;
     // Update chart with the selected category of letters
-    updateChart(city);
+    // updateChart(city);
     currentCity = city
 }
 
