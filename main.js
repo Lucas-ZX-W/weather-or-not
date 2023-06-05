@@ -331,7 +331,7 @@ function filterCities(min,  max) {
     if (eligibleCities.length === 0) {
         eligibleCities.push(noEligibleCityMessage)
     }
-    
+
     // MARK: Enter - Update - Exit sequence for city list results
     // Create the bars themselves
         let cityResultsItem = d3.select("#cityResult").selectAll("p").data(eligibleCities)
