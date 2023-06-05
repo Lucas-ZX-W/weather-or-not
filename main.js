@@ -331,7 +331,7 @@ function filterCities(min,  max) {
     if (eligibleCities.length === 0) {
         eligibleCities.push(noEligibleCityMessage)
     }
-
+    
     // MARK: Enter - Update - Exit sequence for city list results
     // Create the bars themselves
         let cityResultsItem = d3.select("#cityResult").selectAll("p").data(eligibleCities)
@@ -340,15 +340,23 @@ function filterCities(min,  max) {
         cityResultsItem.enter()
             .append('p')
             .text((d) => {
-                return `${cityCodeToName[d]} : Min average = 
+                if (eligibleCities.length === 1 && eligibleCities[0] === noEligibleCityMessage) {
+                    return noEligibleCityMessage
+                } else {
+                    return `${cityCodeToName[d]} : Min average = 
                 ${eligibleCitiesStats[d].cityMin}F; Max average = ${eligibleCitiesStats[d].cityMax}F`
+                }
             })
 
     // MARK: Update Sequence
         cityResultsItem
             .text((d) => {
-                return `${cityCodeToName[d]} : Min average = 
+                if (eligibleCities.length === 1 && eligibleCities[0] === noEligibleCityMessage) {
+                    return noEligibleCityMessage
+                } else {
+                    return `${cityCodeToName[d]} : Min average = 
                 ${eligibleCitiesStats[d].cityMin}F; Max average = ${eligibleCitiesStats[d].cityMax}F`
+                }
             })
 
     // MARK: Exit Sequence
