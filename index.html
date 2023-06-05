@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather-Or-Not</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="intro">
+        <h1>Weather-Or-Not</h1>
+        <img src="weather.png" alt="image of a blue cloud with a red sun in the background" width="300">
+        <h4>A tool for city-seekers to choose their next destination that overlaps the best with their weather preference!</h4>
+        <p>By Lucas Wang for INFO 474, Spring 2023</p>
+        <p class="note">Please see the last section, "Explanation and Disclaimers," at the bottom of this page for the complete explanation, disclaime, citations, and notes on the dataset used for this tool.</p>
+        <p class="note">All temperature values used in this tool uses the imperial Fahrenheit unit (degrees F).</p>
+
+        <h2>Initial Scoping</h2>
+        <p>
+            Initial scoping is intended to narrow down your options to just a few cities for detailed analysis. Please enter your preferred
+            average temperature range below to get some recommendations!
+        </p>
+        <p>
+            Weather-or-Not checks your minimum and maximum comfortable temperatures against the average daily minimum
+            and maximum temperature of every city since 1880, and only returns the cities that fall within your comfortable
+            temperature range.
+        </p>
+        <form onsubmit="return false;" method="post" name="tempScopeForm">
+            <label for="tminScope">Minimum Acceptable Temperature:</label>
+            <input type="number" id="tminScope" name="tminScope"><br><br>
+            <label for="tmaxScope">Maximum Acceptable Temperature:</label>
+            <input type="number" id="tmaxScope" name="tmaxScope"><br><br>
+            <input type="submit" name="submit" onclick="formSubmitted()">
+        </form>
+        <h3>Cities that fit into your initial criteria:</h3>
+        <p>
+            For the cities shown below, we recommend diving deeper with the "Precise City-Specific Comparison" tool for further analysis!
+        </p>
+        <div id="cityResult">
+        </div>
+    </div>
+    <div id="main">
+        <h2>Precise City-Specific Comparison</h2>
+        <p>
+            Precise City-Specific Comparison is intended to give you a precise breakdown of how a specific
+            city fits into your range of comfortable temperatures by giving you a "three times a month" breakdown of
+            from July 2014 to June 2015, showing how many days in each week has an actual measured maximum
+            temperature is higher than your preference, and how many days an actual measured minimum
+            temperature is lower than your preference.
+        </p>
+        <p>
+            Each month is broken into three uniform sections of 10 days. While this does not technically take into
+            account leap years and the different total length of months, it is intended to show a rough breakdown of
+            each month.
+        </p>
+        <p class="note">
+            Please ensure that there is adequate space for the graph to fully display by
+            setting the webpage to full-screen mode.
+        </p>
+        <p>
+            The this visualizations, we hope to make it easier for you to precisely plan out
+            what clothing, tools, equipment, etc. to prepare for any specific time of the year in that city!
+        </p>
+        <p class="instruction">
+            Please adjust which city to visualize with the "City" selector dropdown beneath the graph.
+        </p>
+        <p class="instruction">
+            Please adjust your range of comfortable temperature using the slider below the graph.
+        </p >
+        <p class="instruction">
+            The graph will update itself on-the-fly when the slider is being dragged or when the city selection changes!
+        </p >
+        <svg id="mainChart" width="2500" height="550"></svg>
+        <div>
+            <label for="citySelect">City: </label>
+            <select class="custom-select" id="citySelect" onchange="onCityChanged()">
+                <option selected value="CLT">Charlotte, North Carolina</option>
+                <option value="CQT">Los Angeles, California</option>
+                <option value="IND">Indianapolis, Indiana</option>
+                <option value="JAX">Jacksonville, Florida</option>
+                <option value="MDW">Chicago, Illinois</option>
+                <option value="PHL">Philadelphia, Pennsylvania</option>
+                <option value="PHX">Pheonix, Arizona</option>
+            </select>
+        </div>
+        <div>
+            <svg class="slider"></svg>
+        </div>
+        <text id="sliderTitle" class="note">^^^How to use the Slider above^^^</text>
+        <p>Click/hold and drag on the left "handle" of the slider above to adjust your minimum preferred temperature.</p>
+        <p>Click/hold and drag on the right "handle" of the slider above to adjust your maximum preferred temperature. </p>
+        <p>Press the "Update Chart" button to apply all updates!</p>
+    </div>
+    <div id="exp">
+        <h2>Data Explanation, Disclaimer, and Citations</h2>
+        <p>
+            The data were obtained directly from the INFO 474 teaching staff/materials.
+        </p>
+        <p>
+            Detailed citations have been omitted from the sections above with the intention of simplifying the
+            user experience of the previous sections: to help the user with an intuitive, quick decision based on
+            the results provided from the visualization.
+        </p>
+        <p>
+            Certain portions of the dataset were omitted entirely from this analysis:
+        </p>
+        <p>
+            The "actual mean temperature" of a particular days between July 2014 and June 2015 was omitted as it
+            did not play enough of a role in the intended purpose of Weather-Or-Not since the goal is to surface
+            highs and lows in temperature of each day.
+        </p>
+        <p>
+            Any data concerning record temperatures were omitted, since they do not represent a practical and realistic
+            piece of data in establishing what to generally expect in the city: a heatstorm or blizzard won't help much in establishing
+            the general trend of the city.
+        </p>
+        <p>
+            Any data concerning precipitation were removed, since 1) they do not relate to the tool's theme of focusing only
+            on temperature, and 2) I believe that precipitation is tricky to show intuitively without other methods of
+            visualization: what does 5 millimeters of precipitation even refer to? How deep is it? I believe that
+            some sort of depth-oriented visualization method would be the best option for precipitation, perhaps
+            augmented reality?
+        </p>
+        <h2>Future Development</h2>
+        <p>
+            Several ideas for the future development of Weather-Or-Not surfaced from the development fo this prototype:
+        </p>
+        <p>Support for both Celsius and Fahrenheit.</p>
+        <p>Support for zoom/change of scale (monthly, weekly, seasonal, etc.).</p>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="./slider.js"></script>
+<script src="./main.js"></script>
+</html>

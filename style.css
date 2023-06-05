@@ -1,0 +1,111 @@
+.axis-label {
+    text-anchor: middle;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h1, h2, h3, h4, p {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h3 {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-top: 1.1em;
+}
+
+h4 {
+    font-style: italic;
+}
+
+.note {
+    font-style: italic;
+    color: #ff2d55;
+}
+
+form, #cityResult {
+    border-width: 3px;
+    border-style: solid;
+    border-color: #2ccc42;
+    padding: 1em;
+    width: fit-content;
+}
+
+#main, #intro, #exp {
+    margin: 20px;
+}
+
+.axis-lines {
+    font-weight: bold;
+    stroke-width: 2px;
+}
+
+.letter-label {
+    font-weight: bold
+}
+
+.barUp {
+    fill: #ff2d55;
+}
+
+.barDown {
+    fill: #0479ff;
+}
+
+/*Imported Slider CSS*/
+svg {
+    font-family: sans-serif;
+}
+
+rect.overlay {
+    stroke: black;
+}
+
+rect.selection {
+    stroke: none;
+    fill: steelblue;
+    fill-opacity: 0.6;
+}
+
+#labelleft, #labelright {
+    dominant-baseline: hanging;
+    font-size: 12px;
+}
+
+#labelleft {
+    text-anchor: end;
+}
+
+#labelright {
+    text-anchor: start;
+}
+
+.slider {
+    transform: translate(0px, 0px);
+}
+
+#sliderTitle {
+    font-weight: bold;
+}
+
+#mainChart {
+    border-width: 3px;
+    border-style: solid;
+    border-color: #2ccc42;
+    padding: 1em;
+    width: fit-content;
+}
+
+.instruction {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.bar-up-val-label, .bar-down-val-label {
+    font-weight: bold;
+}
